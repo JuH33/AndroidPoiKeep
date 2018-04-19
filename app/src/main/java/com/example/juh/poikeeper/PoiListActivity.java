@@ -73,13 +73,12 @@ public class PoiListActivity extends AppCompatActivity {
     private RecyclerView.OnItemTouchListener poiClickListener = new RecyclerView.OnItemTouchListener() {
         @Override
         public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-            Log.e("Not Implemented", String.format("Navigate button listener from {0} is not settled", this.getClass()));
             Toast.makeText(PoiListActivity.this, "touched", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-            return false;
+            return true;
         }
 
         @Override
