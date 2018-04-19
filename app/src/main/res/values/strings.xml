@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Poi Keeper</string>
+
+    <!-- LOGIN ACTIVITY -->
+
+    <string name="logo_subtitle">Welcome to POI keeper click below to start</string>
+    <string name="start_button_text">Start Making</string>
+
+    <!-- POI ACTIVITY -->
+
+    <string name="go_to_map_button_text">Navigate</string>
+
+</resources>

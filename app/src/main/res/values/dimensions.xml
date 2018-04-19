@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- SCALES AND SIZING -->
+
+    <dimen name="twice_scale">2</dimen>
+    <dimen name="text_subtitle">17dp</dimen>
+
+    <!-- MARGINS -->
+
+    <dimen name="base_margin">14dp</dimen>
+
+    <!-- PADDINGS -->
+    <dimen name="window_padding">5dp</dimen>
+    <dimen name="item_padding">17dp</dimen>
+
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="token_access_mapboxgl">pk.eyJ1IjoianVoMzMiLCJhIjoiY2pnNjh3ZjBtMGJ3YzMycndwbnc5OHhrdyJ9.sJaaLLLMcSKki1IsKbBtBA</string>
+    <string name="map_style_mapboxgl"></string>
+</resources>
