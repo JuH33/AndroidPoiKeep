@@ -22,6 +22,7 @@ import java.util.List;
 public class PoiListActivity extends AppCompatActivity {
 
     private Button mNavigateButton;
+    private PoiListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +45,27 @@ public class PoiListActivity extends AppCompatActivity {
                 .execute();
 
         try {
-            listView.setAdapter(new PoiListAdapter(pois, new PoiListAdapter.PoiViewHolder.OnPoiViewHolderAction() {
+            adapter = new PoiListAdapter(pois, new PoiListAdapter.PoiViewHolder.OnPoiViewHolderAction() {
                 @Override
                 public void onClickGetDbID(long id) {
                     Intent intent = new Intent(PoiListActivity.this, PoiDetailActivity.class);
                     intent.putExtra(PointOfInterest.PoiKeys.POI_ID.toString(), id);
                     startActivity(intent);
                 }
-            }));
+            });
+            listView.setAdapter(adapter);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        List<PointOfInterest> pois = new Select().from(PointOfInterest.class)
+                .orderBy("RANDOM()")
+                .execute();
+        adapter.addData(pois);
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
@@ -66,6 +77,7 @@ public class PoiListActivity extends AppCompatActivity {
         public void onClick(View v) {
             Log.e("Not Implemented", String.format("Navigate button listener from %s is not settled", this.getClass()));
             Intent intent = new Intent(PoiListActivity.this, MapActivity.class);
+            intent.putExtra("edit_mode", true);
             startActivity(intent);
         }
     };

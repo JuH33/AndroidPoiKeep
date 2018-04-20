@@ -68,6 +68,20 @@ public class PoiListAdapter extends RecyclerView.Adapter<PoiListAdapter.PoiViewH
         return mDataSet.size();
     }
 
+    public void addData(List<PointOfInterest> list) {
+        int insertAt = mDataSet.size();
+        int count = 0;
+
+        for (PointOfInterest poi : list) {
+            if (mDataSet.contains(poi)) continue;
+
+            mDataSet.add(poi);
+            count++;
+        }
+
+        this.notifyItemRangeInserted(insertAt, count);
+    }
+
     //==================================
     //           VIEW HOLDER
     //==================================

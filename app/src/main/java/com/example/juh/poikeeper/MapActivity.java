@@ -13,6 +13,8 @@ public class MapActivity extends AppCompatActivity implements MapFragment.OnFrag
 
     private LatLng mLatLng;
 
+    private boolean mEditMode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +29,12 @@ public class MapActivity extends AppCompatActivity implements MapFragment.OnFrag
             mLatLng.setLongitude(lng);
         }
 
+        mEditMode = getIntent().getBooleanExtra("edit_mode", false);
+
         MapFragment fragment = (MapFragment) getSupportFragmentManager().findFragmentById(R.id.main_fragment_id);
         if (fragment != null) {
             fragment.setLatLng(mLatLng);
+            fragment.setEditMode(mEditMode);
         }
     }
 

@@ -1,20 +1,27 @@
 package fragments.map;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.juh.poikeeper.R;
+import com.example.juh.poikeeper.model.PointOfInterest;
+import com.example.juh.poikeeper.utils.BasePoiAlert;
 import com.example.juh.poikeeper.utils.ConnectionWrapper;
+import com.example.juh.poikeeper.utils.PoiAlertCreate;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdate;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
@@ -30,7 +37,11 @@ public class MapFragment extends Fragment implements View.OnClickListener {
 
     private static final double DEFAULT_LNG = -0.580816;
 
+    private boolean mEditMode;
+
     private LatLng latLng;
+
+    private Marker lastMarker;
 
     private MapView mapView;
 
@@ -60,6 +71,8 @@ public class MapFragment extends Fragment implements View.OnClickListener {
             latLng = new LatLng();
             latLng.setLatitude(getArguments().getDouble(ARG_LAT));
             latLng.setLongitude(getArguments().getDouble(ARG_LNG));
+
+            mEditMode = (getArguments().getBoolean("edit_mode"));
         }
     }
 
@@ -85,7 +98,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
 
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onMapReady(MapboxMap mapboxMap) {
+            public void onMapReady(final MapboxMap mapboxMap) {
                 mMapboxMap = mapboxMap;
                 CameraPosition.Builder cam = new CameraPosition.Builder();
                 cam.zoom(10);
@@ -97,6 +110,11 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 } else {
                     cam.target(new LatLng(DEFAULT_LAT, DEFAULT_LNG));
                     mapboxMap.setCameraPosition(cam.build());
+                }
+
+                if (mEditMode) {
+                    mapboxMap.addOnMapClickListener(mapClickListener);
+                    mapboxMap.setOnMarkerClickListener(markerClickListener);
                 }
             }
         });
@@ -175,8 +193,29 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         this.latLng = latLng;
     }
 
-    public void addMarker(@NonNull LatLng latLng, @NonNull MapboxMap mapboxMap) {
-        mapboxMap.addMarker(new MarkerOptions().position(latLng));
+    public void addMarker(@NonNull final LatLng latLng, @NonNull MapboxMap mapboxMap) {
+        Marker marker = mapboxMap.addMarker(new MarkerOptions().position(latLng));
+
+        mapboxMap.easeCamera(new CameraUpdate() {
+            @Nullable
+            @Override
+            public CameraPosition getCameraPosition(@NonNull MapboxMap mapboxMap) {
+                CameraPosition.Builder cameraPosition = new CameraPosition.Builder();
+                cameraPosition.zoom(mapboxMap.getCameraPosition().zoom);
+                cameraPosition.target(latLng);
+                return cameraPosition.build();
+            }
+        });
+
+        if (lastMarker != null)
+            mapboxMap.removeMarker(lastMarker);
+
+        lastMarker = marker;
+        this.latLng = latLng;
+    }
+
+    public void setEditMode(boolean e) {
+        mEditMode = e;
     }
 
     public MapboxMap getMapView() {
@@ -199,6 +238,36 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
+    MapboxMap.OnMapClickListener mapClickListener = new MapboxMap.OnMapClickListener() {
+        @Override
+        public void onMapClick(@NonNull LatLng point) {
+            addMarker(point, mMapboxMap);
+        }
+    };
+
+    MapboxMap.OnMarkerClickListener markerClickListener = new MapboxMap.OnMarkerClickListener() {
+        @Override
+        public boolean onMarkerClick(@NonNull Marker marker) {
+            PoiAlertCreate.Builder builder = new PoiAlertCreate.Builder();
+            builder.setContext(getContext())
+                   .setLat(marker.getPosition().getLatitude())
+                   .setLng(marker.getPosition().getLongitude())
+                   .setViewId(R.layout.add_poi_alert_view)
+                   .setListener(new BasePoiAlert.IOnClick() {
+                        @Override
+                        public void OnOkClickListenr(@Nullable PointOfInterest pointOfInterest) {
+                            MapFragment.this.getActivity().onBackPressed();
+                        }
+
+                        @Override
+                        public void OnCancelClickListener() {
+                            Log.e("hello:", "notimp");
+                        }
+                    }).create();
+            return false;
+        }
+    };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /// INTERFACE USED AS CALLBACK
