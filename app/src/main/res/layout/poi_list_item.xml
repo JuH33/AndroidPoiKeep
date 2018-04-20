@@ -17,11 +17,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:src="@drawable/mapbox_compass_icon"/>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:paddingLeft="@dimen/item_padding"
             android:layout_height="match_parent">
 
@@ -49,6 +51,7 @@
             android:orientation="vertical"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
@@ -75,12 +78,6 @@
                 android:layout_weight="1"
                 android:text="Lng: -180.0"/>
         </LinearLayout>
-
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_navigation_black_24dp"/>
     </LinearLayout>
 
 </LinearLayout>

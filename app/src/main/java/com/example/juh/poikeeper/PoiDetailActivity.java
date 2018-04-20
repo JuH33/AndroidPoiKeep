@@ -81,6 +81,7 @@ public class PoiDetailActivity extends AppCompatActivity {
             ImageView viewImage = findViewById(R.id.poi_detail_img);
 
             PicassoWrapper wrapper = new PicassoWrapper();
+
             Display display = getWindowManager().getDefaultDisplay();
             Point size = new Point();
             display.getSize(size);
@@ -97,6 +98,11 @@ public class PoiDetailActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Log.e("Imp", "not imp");
+            Intent intent = new Intent(PoiDetailActivity.this, MapActivity.class);
+            LatLng latLng = mPoint.getLatLng();
+            intent.putExtra("lat", latLng.getLatitude());
+            intent.putExtra("lng", latLng.getLongitude());
+            startActivity(intent);
         }
     };
 

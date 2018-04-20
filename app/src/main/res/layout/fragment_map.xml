@@ -1,0 +1,38 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="fragments.map.MapFragment">
+
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/map_view_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/map_zoom_out"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="bottom|right"
+            android:textColor="@color/colorSecondaryWhite"
+            android:textStyle="bold"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="-" />
+
+        <Button
+            android:id="@+id/map_zoom_in"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="bottom|right"
+            android:textStyle="bold"
+            android:layout_marginBottom="70dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/colorSecondaryWhite"
+            android:background="@color/colorPrimaryDark"
+            android:text="+" />
+
+    </com.mapbox.mapboxsdk.maps.MapView>
+
+</FrameLayout>

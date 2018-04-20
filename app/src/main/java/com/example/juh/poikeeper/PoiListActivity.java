@@ -39,19 +39,6 @@ public class PoiListActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(layoutManager);
 
-        ActiveAndroid.beginTransaction();
-        try {
-            for (int i = 0; i < 10; i++) {
-                PointOfInterest poi = new PointOfInterest("name" + i, "desc" + i,
-                        "https://www.wonderplugin.com/videos/demo-image0.jpg",
-                        new LatLng(44d, 157d));
-                poi.save();
-            }
-            ActiveAndroid.setTransactionSuccessful();
-        } finally {
-            ActiveAndroid.endTransaction();
-        }
-
         List<PointOfInterest> pois = new Select().from(PointOfInterest.class)
                 .orderBy("RANDOM()")
                 .execute();
@@ -77,7 +64,9 @@ public class PoiListActivity extends AppCompatActivity {
     private View.OnClickListener navigateListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.e("Not Implemented", String.format("Navigate button listener from {0} is not settled", this.getClass()));
+            Log.e("Not Implemented", String.format("Navigate button listener from %s is not settled", this.getClass()));
+            Intent intent = new Intent(PoiListActivity.this, MapActivity.class);
+            startActivity(intent);
         }
     };
 }
