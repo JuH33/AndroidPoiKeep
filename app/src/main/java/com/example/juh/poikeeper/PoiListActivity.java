@@ -1,5 +1,6 @@
 package com.example.juh.poikeeper;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.app.AppCompatActivity;
@@ -41,8 +42,8 @@ public class PoiListActivity extends AppCompatActivity {
         ActiveAndroid.beginTransaction();
         try {
             for (int i = 0; i < 10; i++) {
-                PointOfInterest poi = new PointOfInterest("name" + i,
-                        "desc" + i,
+                PointOfInterest poi = new PointOfInterest("name" + i, "desc" + i,
+                        "https://www.wonderplugin.com/videos/demo-image0.jpg",
                         new LatLng(44d, 157d));
                 poi.save();
             }
@@ -55,8 +56,18 @@ public class PoiListActivity extends AppCompatActivity {
                 .orderBy("RANDOM()")
                 .execute();
 
-        listView.setAdapter(new PoiListAdapter(pois));
-        listView.addOnItemTouchListener(poiClickListener);
+        try {
+            listView.setAdapter(new PoiListAdapter(pois, new PoiListAdapter.PoiViewHolder.OnPoiViewHolderAction() {
+                @Override
+                public void onClickGetDbID(long id) {
+                    Intent intent = new Intent(PoiListActivity.this, PoiDetailActivity.class);
+                    intent.putExtra(PointOfInterest.PoiKeys.POI_ID.toString(), id);
+                    startActivity(intent);
+                }
+            }));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
@@ -67,23 +78,6 @@ public class PoiListActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Log.e("Not Implemented", String.format("Navigate button listener from {0} is not settled", this.getClass()));
-        }
-    };
-
-    private RecyclerView.OnItemTouchListener poiClickListener = new RecyclerView.OnItemTouchListener() {
-        @Override
-        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-            Toast.makeText(PoiListActivity.this, "touched", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-            return true;
-        }
-
-        @Override
-        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
         }
     };
 }

@@ -17,21 +17,21 @@
 
         <!-- ORM -->
 
-        <meta-data android:name="AA_DB_NAME" android:value="PoiBaseDb.db" />
-        <meta-data android:name="AA_DB_VERSION" android:value="1" />
-
+        <meta-data
+            android:name="AA_DB_NAME"
+            android:value="PoiBaseDb.db" />
+        <meta-data
+            android:name="AA_DB_VERSION"
+            android:value="1" />
         <meta-data
             android:name="AA_MODELS"
-            android:value="com.example.juh.poikeeper.model.PointOfInterest,
-                           com.example.juh.poikeeper.model.PoiTask,
-                           com.example.juh.poikeeper.model.PoiTaskItem" />
+            android:value="com.example.juh.poikeeper.model.PointOfInterest,                            com.example.juh.poikeeper.model.PoiTask,                            com.example.juh.poikeeper.model.PoiTaskItem" />
 
         <provider
             android:name="com.activeandroid.content.ContentProvider"
             android:authorities="com.example.juh.poikeeper"
             android:enabled="true"
-            android:exported="false">
-        </provider>
+            android:exported="false"></provider>
 
         <!-- ACTIVITIES DECLARATION -->
 
@@ -40,14 +40,15 @@
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".PoiListActivity"
-            android:parentActivityName=".PoiListActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:parentActivityName=".PoiListActivity" />
+        <activity android:name=".PoiDetailActivity"></activity>
     </application>
 
 </manifest>

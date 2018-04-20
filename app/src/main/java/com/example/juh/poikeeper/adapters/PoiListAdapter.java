@@ -2,12 +2,15 @@ package com.example.juh.poikeeper.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.juh.poikeeper.PoiListActivity;
 import com.example.juh.poikeeper.R;
 import com.example.juh.poikeeper.model.PointOfInterest;
 
@@ -19,7 +22,14 @@ public class PoiListAdapter extends RecyclerView.Adapter<PoiListAdapter.PoiViewH
 
     private List<PointOfInterest> mDataSet;
 
-    public PoiListAdapter(@NonNull List<PointOfInterest> dataSet) {
+    private PoiViewHolder.OnPoiViewHolderAction mViewHolderListener;
+
+    public PoiListAdapter(@NonNull List<PointOfInterest> dataSet,
+                          @NonNull PoiViewHolder.OnPoiViewHolderAction action) throws Exception {
+        if (action == null) {
+            throw new Exception("Action cannot be null");
+        }
+        mViewHolderListener = action;
         mDataSet = dataSet;
     }
 
@@ -33,7 +43,7 @@ public class PoiListAdapter extends RecyclerView.Adapter<PoiListAdapter.PoiViewH
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.poi_list_item, parent, false);
 
-        PoiViewHolder viewHolder = new PoiViewHolder(view);
+        PoiViewHolder viewHolder = new PoiViewHolder(view, mViewHolderListener);
         return viewHolder;
     }
 
@@ -45,6 +55,7 @@ public class PoiListAdapter extends RecyclerView.Adapter<PoiListAdapter.PoiViewH
         holder.mPoiName.setText(poi.name);
         holder.mPoiLng.setText(String.valueOf(poi.lat));
         holder.mPoiLat.setText(String.valueOf(poi.lng));
+        holder.setId(poi.getId());
     }
 
     @Override
@@ -60,7 +71,7 @@ public class PoiListAdapter extends RecyclerView.Adapter<PoiListAdapter.PoiViewH
     //==================================
     //           VIEW HOLDER
     //==================================
-    public static class PoiViewHolder extends RecyclerView.ViewHolder {
+    public static class PoiViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @NonNull public LinearLayout mLayout;
 
@@ -72,15 +83,40 @@ public class PoiListAdapter extends RecyclerView.Adapter<PoiListAdapter.PoiViewH
 
         @NonNull public TextView mPoiLng;
 
+        // DATA
+
+        @NonNull private long id;
+
+        @NonNull private OnPoiViewHolderAction mAction;
+
         // CONSTRUCTOR
-        public PoiViewHolder(View itemView) {
+        public PoiViewHolder(View itemView, OnPoiViewHolderAction action) {
             super(itemView);
             mLayout = itemView.findViewById(R.id.poi_item_layout);
+            mAction = action;
+            mLayout.setOnClickListener(this);
 
             mPoiName = mLayout.findViewById(R.id.poi_item_name);
             mPoiDesc = mLayout.findViewById(R.id.poi_item_desc);
             mPoiLat = mLayout.findViewById(R.id.poi_item_lat);
             mPoiLng = mLayout.findViewById(R.id.poi_item_lng);
+        }
+
+        public void setId(long id) {
+            this.id = id;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.e("lalalal", "clicked" + id);
+            mAction.onClickGetDbID(id);
+        }
+
+        //////////
+        // Public Interface as Callback
+        //////////
+        public interface OnPoiViewHolderAction {
+            void onClickGetDbID(long id);
         }
     }
 

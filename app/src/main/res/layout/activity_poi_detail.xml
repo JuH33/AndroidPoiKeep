@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".PoiDetailActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/poi_detail_img"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            tools:src="@drawable/circle_loader"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:padding="@dimen/base_margin"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:background="@drawable/shaddow_shape">
+
+            <Button
+                android:id="@+id/poi_detail_map_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@drawable/shaddow_shape"
+                android:text="Map"/>
+
+            <Button
+                android:id="@+id/poi_detail_add_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@drawable/shaddow_shape"
+                android:layout_weight="1"
+                android:text="Add Task"/>
+
+            <Button
+                android:id="@+id/poi_detail_list_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@drawable/shaddow_shape"
+                android:layout_weight="1"
+                android:text="Tasks List"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/base_margin"
+            android:padding="@dimen/base_margin"
+            android:background="@drawable/shaddow_shape"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/poi_detail_name"
+                style="@style/PoiDetails"
+                android:drawableLeft="@drawable/ic_my_location_black_24dp"
+                android:text="@string/default_value"/>
+
+
+            <TextView
+                android:id="@+id/poi_detail_desc"
+                style="@style/PoiDetails"
+                android:drawableLeft="@drawable/ic_description_black_24dp"
+                android:text="@string/default_value"/>
+
+
+            <TextView
+                android:id="@+id/poi_detail_coords"
+                style="@style/PoiDetails"
+                android:drawableLeft="@drawable/ic_pin_drop_black_24dp"
+                android:text="@string/default_value"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
