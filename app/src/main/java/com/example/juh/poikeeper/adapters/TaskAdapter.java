@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.juh.poikeeper.R;
@@ -38,6 +39,7 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
         holder.getDescription().setText(task.description);
         holder.getName().setText(task.name);
         holder.getTitle().setText(task.title);
+        holder.getChecked().setChecked(task.checked);
     }
 
     @Override
@@ -55,6 +57,7 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
         private TextView name;
         private TextView description;
         private TextView Date;
+        private CheckBox Checked;
 
         public TaskHolder(View itemView) {
             super(itemView);
@@ -63,6 +66,7 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
             setName((TextView) itemView.findViewById(R.id.task_item_name));
             setDate((TextView) itemView.findViewById(R.id.task_item_date));
             setDescription((TextView) itemView.findViewById(R.id.task_item_desc));
+            setChecked((CheckBox) itemView.findViewById(R.id.task_item_checked));
         }
 
         // =========================
@@ -99,6 +103,14 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
 
         public void setDate(TextView date) {
             Date = date;
+        }
+
+        public CheckBox getChecked() {
+            return Checked;
+        }
+
+        public void setChecked(CheckBox checked) {
+            Checked = checked;
         }
     }
 }

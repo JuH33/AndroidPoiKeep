@@ -27,6 +27,9 @@ public final class PoiTask extends Model {
     @Column(name = "date")
     public Date date;
 
+    @Column(name = "checked", index = true)
+    public boolean checked;
+
     /// RELATIONSHIP
     @Column(name = "point_of_interest", onUpdate = Column.ForeignKeyAction.CASCADE, onDelete = Column.ForeignKeyAction.CASCADE)
     public PointOfInterest pointOfInterest;
