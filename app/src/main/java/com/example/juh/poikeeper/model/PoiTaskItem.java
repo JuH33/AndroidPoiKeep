@@ -29,6 +29,7 @@ public final class PoiTaskItem extends Model {
 
     /// RELATIONS
 
+    @Column(name = "poi_task", onUpdate = Column.ForeignKeyAction.CASCADE, onDelete = Column.ForeignKeyAction.CASCADE)
     public PoiTask poiTask;
 
     //////////////////////////////////////////////////////////////////////////////////////

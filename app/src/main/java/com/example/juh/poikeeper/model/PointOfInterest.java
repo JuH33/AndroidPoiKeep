@@ -55,10 +55,6 @@ public final class PointOfInterest extends Model {
     @Column(name = "image_url")
     public String imageUrl;
 
-    /// RELATIONSHIP
-
-    public List<PoiTask> tasks;
-
     //////////////////////////////////////////////////////////////////////////////////////
     // CONSTRUCTORS
     //////////////////////////////////////////////////////////////////////////////////////
@@ -94,6 +90,10 @@ public final class PointOfInterest extends Model {
 
     public LatLng getLatLng() {
         return new LatLng(lat, lng);
+    }
+
+    public List<PoiTask> getTasks() {
+        return getMany(PoiTask.class, "point_of_interest");
     }
 
     //////////////////////////////////////////////////////////////////////////////////////

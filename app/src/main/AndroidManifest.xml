@@ -25,9 +25,7 @@
             android:value="1" />
         <meta-data
             android:name="AA_MODELS"
-            android:value="com.example.juh.poikeeper.model.PointOfInterest,
-                                       com.example.juh.poikeeper.model.PoiTask,
-                                       com.example.juh.poikeeper.model.PoiTaskItem" />
+            android:value="com.example.juh.poikeeper.model.PointOfInterest,                                        com.example.juh.poikeeper.model.PoiTask,                                        com.example.juh.poikeeper.model.PoiTaskItem" />
 
         <provider
             android:name="com.activeandroid.content.ContentProvider"
@@ -49,11 +47,14 @@
         <activity
             android:name=".PoiListActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".PoiDetailActivity"
-            android:parentActivityName=".PoiListActivity"
-            android:launchMode="standard" />
-        <activity android:name=".MapActivity"
+        <activity
+            android:name=".PoiDetailActivity"
+            android:launchMode="standard"
+            android:parentActivityName=".PoiListActivity" />
+        <activity
+            android:name=".MapActivity"
             android:launchMode="singleTop" />
+        <activity android:name=".TaskListActivity"></activity>
     </application>
 
 </manifest>

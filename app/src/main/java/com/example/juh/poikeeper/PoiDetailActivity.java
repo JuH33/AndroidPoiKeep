@@ -46,7 +46,7 @@ public class PoiDetailActivity extends AppCompatActivity {
         /// ADD LISTENERS
         mMapBtn.setOnClickListener(mMapActionListener);
         mAddTaskBtn.setOnClickListener(mAddTaskActionListener);
-        mListTaskBtn.setOnClickListener(mAddTaskActionListener);
+        mListTaskBtn.setOnClickListener(mTaskListActionListener);
 
         /// SET DATA
         Intent thisIntent = getIntent();
@@ -125,7 +125,9 @@ public class PoiDetailActivity extends AppCompatActivity {
     View.OnClickListener mTaskListActionListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.e("imp", "not imp");
+            Intent intent = new Intent(PoiDetailActivity.this, TaskListActivity.class);
+            intent.putExtra("poi_id", mPoint.getId());
+            startActivity(intent);
         }
     };
 }
