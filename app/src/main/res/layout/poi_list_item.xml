@@ -8,6 +8,8 @@
     <LinearLayout
         android:id="@+id/poi_item_layout"
         android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:orientation="horizontal"
         android:layout_marginBottom="@dimen/base_margin"
         android:padding="@dimen/item_padding"
@@ -15,16 +17,16 @@
         android:layout_height="100dp">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/mapbox_compass_icon"/>
+            android:tint="@color/colorSecondaryWhite"
+            android:src="@drawable/ic_my_location_black_24dp"/>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_weight="1"
             android:paddingLeft="@dimen/item_padding"
+            android:layout_weight="1"
             android:layout_height="match_parent">
 
             <TextView
@@ -41,7 +43,7 @@
                 android:id="@+id/poi_item_desc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="@color/colorSecondaryWhite"
+                android:textColor="@color/colorWhite"
                 android:layout_weight="1.5"
                 android:textSize="12dp"
                 android:text="Une super description ama"/>
@@ -51,8 +53,7 @@
             android:orientation="vertical"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="match_parent">
 
             <TextView
@@ -67,7 +68,7 @@
             <android.support.v4.widget.ContentLoadingProgressBar
                 android:layout_width="match_parent"
                 android:background="@color/colorSecondaryWhite"
-                android:layout_height="5dp" />
+                android:layout_height="2dp" />
 
             <TextView
                 android:id="@+id/poi_item_lng"

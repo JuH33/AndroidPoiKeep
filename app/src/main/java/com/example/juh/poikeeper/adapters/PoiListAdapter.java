@@ -16,6 +16,7 @@ import com.example.juh.poikeeper.model.PointOfInterest;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class PoiListAdapter extends RecyclerView.Adapter<PoiListAdapter.PoiViewHolder> {
@@ -53,8 +54,8 @@ public class PoiListAdapter extends RecyclerView.Adapter<PoiListAdapter.PoiViewH
 
         holder.mPoiDesc.setText(poi.description);
         holder.mPoiName.setText(poi.name);
-        holder.mPoiLng.setText(String.valueOf(poi.lat));
-        holder.mPoiLat.setText(String.valueOf(poi.lng));
+        holder.mPoiLng.setText(String.valueOf(Math.round(100 * poi.lat)/100.f));
+        holder.mPoiLat.setText(String.valueOf(Math.round(100 * poi.lng)/100.f));
         holder.setId(poi.getId());
     }
 

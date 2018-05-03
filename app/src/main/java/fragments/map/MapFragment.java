@@ -262,7 +262,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
 
                         @Override
                         public void OnCancelClickListener() {
-                            Log.e("hello:", "notimp");
+                            Log.e("hello:", "not imp");
                         }
                     }).create();
             return false;

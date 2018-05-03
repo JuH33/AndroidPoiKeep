@@ -1,6 +1,5 @@
 package com.example.juh.poikeeper;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
@@ -14,11 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.activeandroid.query.Select;
 import com.example.juh.poikeeper.model.PointOfInterest;
 import com.example.juh.poikeeper.utils.PicassoWrapper;
 import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.squareup.picasso.Picasso;
 
 public class PoiDetailActivity extends AppCompatActivity {
 
@@ -56,11 +53,18 @@ public class PoiDetailActivity extends AppCompatActivity {
         long defaultLong = 0;
         long poiId = thisIntent.getExtras().getLong(PointOfInterest.PoiKeys.POI_ID.toString(), defaultLong);
         setDbDataToView(poiId);
+        getSupportActionBar().setTitle(mPoint.name);
     }
 
     @Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
         return super.onCreateView(parent, name, context, attrs);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
@@ -77,7 +81,9 @@ public class PoiDetailActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.poi_detail_name)).setText(mPoint.name);
             ((TextView) findViewById(R.id.poi_detail_desc)).setText(mPoint.description);
             LatLng latLng = mPoint.getLatLng();
-            ((TextView) findViewById(R.id.poi_detail_coords)).setText(String.format("Lat: %s / Lng: %s", latLng.getLatitude(), latLng.getLongitude()));
+            ((TextView) findViewById(R.id.poi_detail_coords)).setText(String.format("Lat: %s / Lng: %s",
+                    Math.round(100*latLng.getLatitude())/100.f,
+                    Math.round(100*latLng.getLongitude())/100.f));
             ImageView viewImage = findViewById(R.id.poi_detail_img);
 
             PicassoWrapper wrapper = new PicassoWrapper();
@@ -85,6 +91,9 @@ public class PoiDetailActivity extends AppCompatActivity {
             Display display = getWindowManager().getDefaultDisplay();
             Point size = new Point();
             display.getSize(size);
+
+            mPoint.imageUrl = PicassoWrapper.formatUrl(mPoint.lat, mPoint.lng, 800, 480,
+                    getResources().getString(R.string.token_access_mapboxgl));
 
             wrapper.loadWithOptions(mPoint.imageUrl, true, viewImage, true);
         }

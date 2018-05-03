@@ -3,12 +3,12 @@
 
     <!-- LOGIN ACTIVITY -->
 
-    <string name="logo_subtitle">Welcome to POI keeper click below to start</string>
-    <string name="start_button_text">Start Making</string>
+    <string name="logo_subtitle">POI keeper</string>
+    <string name="start_button_text">Start</string>
 
     <!-- POI ACTIVITY -->
 
-    <string name="go_to_map_button_text">Navigate</string>
+    <string name="go_to_map_button_text">Create</string>
 
     <!-- DEFAULT -->
     <string name="default_value">Default Value</string>

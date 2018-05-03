@@ -19,7 +19,7 @@
             <view class="android.support.v7.widget.RecyclerView"
                 android:id="@+id/poilist_listview"
                 android:layout_width="match_parent"
-                android:layout_height="390dp"/>
+                android:layout_height="420dp"/>
         </LinearLayout>
 
         <LinearLayout

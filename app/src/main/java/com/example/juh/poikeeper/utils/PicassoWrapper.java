@@ -1,5 +1,6 @@
 package com.example.juh.poikeeper.utils;
 
+import android.support.annotation.StringRes;
 import android.widget.ImageView;
 
 import com.example.juh.poikeeper.R;
@@ -21,7 +22,7 @@ public final class PicassoWrapper {
     }
 
     public void loadWithLoader() {
-        mCreator.placeholder(R.drawable.ic_pin_drop_black_24dp);
+        mCreator.placeholder(R.drawable.ic_sync_black_24dp);
     }
 
     public void loadWithOptions(String url, boolean fit, ImageView target,
@@ -35,5 +36,10 @@ public final class PicassoWrapper {
             mCreator.fit().centerCrop();
 
         mCreator.into(target);
+    }
+
+    public static String formatUrl(double lat, double lng, int width, int height, String token) {
+        String format = "https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/%s,%s,10,0,0/%sx%s?access_token=%s";
+        return String.format(format, lng, lat, width, height, token);
     }
 }

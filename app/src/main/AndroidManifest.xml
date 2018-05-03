@@ -48,9 +48,9 @@
         </activity>
         <activity
             android:name=".PoiListActivity"
-            android:launchMode="singleTop"
-            android:parentActivityName=".PoiListActivity" />
+            android:launchMode="singleTop" />
         <activity android:name=".PoiDetailActivity"
+            android:parentActivityName=".PoiListActivity"
             android:launchMode="standard" />
         <activity android:name=".MapActivity"
             android:launchMode="singleTop" />

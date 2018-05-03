@@ -20,6 +20,8 @@ public class MapActivity extends AppCompatActivity implements MapFragment.OnFrag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         if (getIntent().hasExtra("lng") && getIntent().hasExtra("lat")) {
             double lng = getIntent().getDoubleExtra("lng", 0.0);
             double lat = getIntent().getDoubleExtra("lat", 0.0d);
@@ -36,6 +38,12 @@ public class MapActivity extends AppCompatActivity implements MapFragment.OnFrag
             fragment.setLatLng(mLatLng);
             fragment.setEditMode(mEditMode);
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     @Override
