@@ -9,6 +9,7 @@
     <!-- POI ACTIVITY -->
 
     <string name="go_to_map_button_text">Create</string>
+    <string name="create_poi">Add a new Point</string>
 
     <!-- DEFAULT -->
     <string name="default_value">Default Value</string>

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.juh.poikeeper.R;
 import com.example.juh.poikeeper.model.PointOfInterest;
@@ -113,6 +114,8 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 }
 
                 if (mEditMode) {
+                    Toast.makeText(MapFragment.this.getContext(), "Tap somewhere to add a new point",
+                            Toast.LENGTH_LONG).show();
                     mapboxMap.addOnMapClickListener(mapClickListener);
                     mapboxMap.setOnMarkerClickListener(markerClickListener);
                 }
@@ -242,6 +245,8 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     MapboxMap.OnMapClickListener mapClickListener = new MapboxMap.OnMapClickListener() {
         @Override
         public void onMapClick(@NonNull LatLng point) {
+            Toast.makeText(MapFragment.this.getContext(), "Click on the marker to add a new POI",
+                    Toast.LENGTH_LONG).show();
             addMarker(point, mMapboxMap);
         }
     };

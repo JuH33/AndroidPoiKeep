@@ -11,6 +11,18 @@
         android:layout_weight="1"
         android:padding="10dp" >
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="@dimen/text_subtitle"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
+            android:text="@string/create_poi"
+            android:background="@color/colorPrimary"/>
+
         <!-- NAME -->
 
         <TextView
@@ -42,12 +54,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text" />
-
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/mapbox_info_icon_default"/>
 
     </LinearLayout>
 
