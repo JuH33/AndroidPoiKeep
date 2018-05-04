@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.juh.poikeeper.R;
@@ -16,12 +17,13 @@ import java.util.List;
 public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
 
     private List<PoiTask> mList;
+    private OnTaskInteraction mlistener;
 
-    public TaskAdapter(List<PoiTask> list) {
+    public TaskAdapter(List<PoiTask> list, @NonNull OnTaskInteraction listener) {
         super();
         mList = list;
+        mlistener = listener;
     }
-
 
     @NonNull
     @Override
@@ -34,17 +36,31 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
     @Override
     public void onBindViewHolder(@NonNull TaskHolder holder, int position) {
         PoiTask task = mList.get(position);
+        // WILL BOXED AT COMPILATION
+        final long id = task.getId();
 
         holder.getDate().setText(task.date.toString());
         holder.getDescription().setText(task.description);
         holder.getName().setText(task.name);
         holder.getTitle().setText(task.title);
         holder.getChecked().setChecked(task.checked);
+        holder.getChecked().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mlistener.onCheckedClick(id, isChecked);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return mList.size();
+    }
+
+    public void addTask(@NonNull PoiTask task) {
+        int position = mList.size();
+        mList.add(task);
+        notifyItemInserted(position);
     }
 
     //////////////////////////////////////////////////////////////////
@@ -112,5 +128,13 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
         public void setChecked(CheckBox checked) {
             Checked = checked;
         }
+    }
+
+    //////////////////////////////////////////////////////////////////
+    /// INNER INTERFACE
+    //////////////////////////////////////////////////////////////////
+
+    public interface OnTaskInteraction {
+        void onCheckedClick(long taskId, boolean checked);
     }
 }

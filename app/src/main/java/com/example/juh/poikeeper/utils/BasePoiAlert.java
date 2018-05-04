@@ -1,11 +1,14 @@
 package com.example.juh.poikeeper.utils;
 
 import android.content.Context;
+import android.graphics.ColorSpace;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.View;
+
+import com.activeandroid.Model;
 import com.example.juh.poikeeper.R;
 import com.example.juh.poikeeper.model.PointOfInterest;
 
@@ -49,7 +52,7 @@ public abstract class BasePoiAlert implements View.OnClickListener {
     }
 
     public interface IOnClick {
-        void OnOkClickListenr(@Nullable PointOfInterest pointOfInterest);
+        <T extends Model> void OnOkClickListenr(T pointOfInterest);
         void OnCancelClickListener();
     }
 }

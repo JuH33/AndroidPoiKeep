@@ -52,7 +52,7 @@ public final class PoiTask extends Model {
         return getMany(PoiTaskItem.class, "poi_task");
     }
 
-    public static PoiTask getById(int id) {
+    public static PoiTask getById(long id) {
         return (new Select()).from(PoiTask.class)
                 .where("Id = ?", id)
                 .executeSingle();

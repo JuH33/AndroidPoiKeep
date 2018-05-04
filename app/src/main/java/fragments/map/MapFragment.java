@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.activeandroid.Model;
 import com.example.juh.poikeeper.R;
 import com.example.juh.poikeeper.model.PointOfInterest;
 import com.example.juh.poikeeper.utils.BasePoiAlert;
@@ -260,12 +261,12 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                    .setLng(marker.getPosition().getLongitude())
                    .setViewId(R.layout.add_poi_alert_view)
                    .setListener(new BasePoiAlert.IOnClick() {
-                        @Override
-                        public void OnOkClickListenr(@Nullable PointOfInterest pointOfInterest) {
-                            MapFragment.this.getActivity().onBackPressed();
-                        }
+                       @Override
+                       public <T extends Model> void OnOkClickListenr(T pointOfInterest) {
+                           MapFragment.this.getActivity().onBackPressed();
+                       }
 
-                        @Override
+                       @Override
                         public void OnCancelClickListener() {
                             Log.e("hello:", "not imp");
                         }
