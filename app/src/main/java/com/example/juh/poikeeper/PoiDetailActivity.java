@@ -13,8 +13,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.activeandroid.Model;
+import com.example.juh.poikeeper.model.PoiTask;
 import com.example.juh.poikeeper.model.PointOfInterest;
+import com.example.juh.poikeeper.utils.BasePoiAlert;
 import com.example.juh.poikeeper.utils.PicassoWrapper;
+import com.example.juh.poikeeper.utils.PoiTaskAlert;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
 public class PoiDetailActivity extends AppCompatActivity {
@@ -118,7 +122,20 @@ public class PoiDetailActivity extends AppCompatActivity {
     View.OnClickListener mAddTaskActionListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.e("imp", "not imp");
+            PoiTaskAlert.Builder builder = new PoiTaskAlert.Builder();
+            builder.setPoiId(PoiDetailActivity.this.mPoint.getId())
+                    .setViewId(R.layout.add_task_alert_view)
+                    .setContext(PoiDetailActivity.this)
+                    .setListener(new BasePoiAlert.IOnClick() {
+                        @Override
+                        public <T extends Model> void OnOkClickListenr(T pointOfInterest) {
+                            PoiTask poiTask = (PoiTask) pointOfInterest;
+                        }
+
+                        @Override
+                        public void OnCancelClickListener() { }
+                    });
+            builder.create();
         }
     };
 

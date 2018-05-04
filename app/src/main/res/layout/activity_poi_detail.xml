@@ -52,7 +52,7 @@
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:background="@drawable/shaddow_shape"
                 android:layout_weight="1"
-                android:text="Add Task"/>
+                android:text="Add Spot"/>
 
             <Button
                 android:id="@+id/poi_detail_list_btn"
@@ -61,7 +61,7 @@
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:background="@drawable/shaddow_shape"
                 android:layout_weight="1"
-                android:text="Tasks List"/>
+                android:text="Spot List"/>
         </LinearLayout>
 
         <LinearLayout
