@@ -88,6 +88,13 @@ public class TaskListActivity extends AppCompatActivity {
 
     private TaskAdapter.OnTaskInteraction mListener = new TaskAdapter.OnTaskInteraction() {
         @Override
+        public void deleteOnLongClick(long taskId, int position) {
+            PoiTask.delete(PoiTask.class, taskId);
+            mAdapter.removeTask(position);
+            Log.i("DATABASE", String.format("TASK N°%s HAS BEEN DELETED", taskId));
+        }
+
+        @Override
         public void onCheckedClick(long taskId, boolean checked) {
             PoiTask task = PoiTask.getById(taskId);
             if (task != null) {

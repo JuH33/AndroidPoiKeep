@@ -24,6 +24,7 @@
             android:orientation="vertical"
             android:layout_marginLeft="@dimen/base_margin"
             android:layout_width="match_parent"
+            android:layout_weight="1"
             android:layout_height="match_parent">
 
             <TextView
@@ -58,6 +59,35 @@
                 android:layout_gravity="bottom|end"
                 android:text="22/03/2017"/>
 
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/task_item_deleted_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:backgroundTint="#9b1818"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:text="Delete"/>
+
+            <Button
+                android:id="@+id/task_item_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:backgroundTint="@color/colorPrimary"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:text="Cancel"/>
         </LinearLayout>
     </LinearLayout>
 

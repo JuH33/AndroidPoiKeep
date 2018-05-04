@@ -2,9 +2,11 @@ package com.example.juh.poikeeper.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -36,7 +38,6 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
     @Override
     public void onBindViewHolder(@NonNull TaskHolder holder, int position) {
         PoiTask task = mList.get(position);
-        // WILL BOXED AT COMPILATION
         final long id = task.getId();
 
         holder.getDate().setText(task.date.toString());
@@ -50,6 +51,7 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
                 mlistener.onCheckedClick(id, isChecked);
             }
         });
+        holder.setOnLongClickListener(mlistener, id, position);
     }
 
     @Override
@@ -63,6 +65,10 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
         notifyItemInserted(position);
     }
 
+    public void removeTask(@NonNull int position) {
+        mList.remove(position);
+        notifyItemRemoved(position);
+    }
     //////////////////////////////////////////////////////////////////
     /// INNER CLASS HOLDER
     //////////////////////////////////////////////////////////////////
@@ -128,6 +134,37 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
         public void setChecked(CheckBox checked) {
             Checked = checked;
         }
+
+        public void setOnLongClickListener(final OnTaskInteraction interaction,
+                                           final long taskId,
+                                           final int position) {
+            final Button deleteBtn = itemView.findViewById(R.id.task_item_deleted_button);
+            final Button cancelBtn = itemView.findViewById(R.id.task_item_cancel);
+
+            cancelBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteBtn.setVisibility(View.GONE);
+                    cancelBtn.setVisibility(View.GONE);
+                }
+            });
+
+            deleteBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    interaction.deleteOnLongClick(taskId, position);
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    deleteBtn.setVisibility(View.VISIBLE);
+                    cancelBtn.setVisibility(View.VISIBLE);
+                    return true;
+                }
+            });
+        }
     }
 
     //////////////////////////////////////////////////////////////////
@@ -136,5 +173,6 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
 
     public interface OnTaskInteraction {
         void onCheckedClick(long taskId, boolean checked);
+        void deleteOnLongClick(long taskId, int position);
     }
 }
