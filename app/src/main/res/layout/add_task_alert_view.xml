@@ -75,11 +75,6 @@
             android:layout_height="wrap_content"
             android:inputType="text" />
 
-        <DatePicker
-            android:id="@+id/alert_task_date"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
         <include layout="@layout/save_cancel_buttons" />
     </LinearLayout>
     </ScrollView>

@@ -25,7 +25,6 @@ public final class PoiTaskAlert extends BasePoiAlert {
     private EditText name;
     private EditText description;
     private EditText title;
-    private DatePicker date;
 
     protected PoiTaskAlert(BaseBuilder builder) {
         super(builder);
@@ -48,7 +47,6 @@ public final class PoiTaskAlert extends BasePoiAlert {
         title = view.findViewById(R.id.alert_task_title);
         name = view.findViewById(R.id.alert_task_name);
         description = view.findViewById(R.id.alert_task_desc);
-        date = view.findViewById(R.id.alert_task_date);
 
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(mContext);
         alertBuilder.setView(view);

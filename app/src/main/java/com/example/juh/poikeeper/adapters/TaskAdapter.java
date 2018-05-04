@@ -14,7 +14,14 @@ import android.widget.TextView;
 import com.example.juh.poikeeper.R;
 import com.example.juh.poikeeper.model.PoiTask;
 
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
 
@@ -40,7 +47,11 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
         PoiTask task = mList.get(position);
         final long id = task.getId();
 
-        holder.getDate().setText(task.date.toString());
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy HH:mm",
+                new Locale("FR-fr"));
+        String date = format.format(task.date);
+
+        holder.getDate().setText(date);
         holder.getDescription().setText(task.description);
         holder.getName().setText(task.name);
         holder.getTitle().setText(task.title);
