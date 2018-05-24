@@ -8,6 +8,7 @@
     <color name="colorSecondaryWhite">#f5f2dc</color>
     <color name="colorSecondaryOrange">#ff5729</color>
 
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#61af37</color>
     <color name="colorWhite">#FFF</color>
+    <color name="overMapBlue">#bd347c7c</color>
 </resources>

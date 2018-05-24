@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CustomDialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
     <style name="PoiDetails">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -17,6 +22,15 @@
         <item name="android:textSize">@dimen/poi_detail_element_size</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="PoiDetailButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:drawableTint">@color/colorWhite</item>
+        <item name="android:background">@color/overMapBlue</item>
     </style>
 
 </resources>

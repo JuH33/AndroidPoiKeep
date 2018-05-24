@@ -71,8 +71,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textStyle="bold"
-                style="@style/Base.Widget.AppCompat.Button.Colored"
-                android:backgroundTint="#9b1818"
+                android:textColor="@color/colorWhite"
+                android:background="#9b1818"
                 android:visibility="gone"
                 tools:visibility="visible"
                 android:text="Delete"/>
@@ -83,8 +83,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textStyle="bold"
-                style="@style/Base.Widget.AppCompat.Button.Colored"
-                android:backgroundTint="@color/colorPrimary"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/colorWhite"
                 android:visibility="gone"
                 tools:visibility="visible"
                 android:text="Cancel"/>

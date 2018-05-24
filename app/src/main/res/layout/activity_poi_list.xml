@@ -7,39 +7,29 @@
     android:orientation="vertical"
     tools:context=".PoiListActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/poi_list_navigate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/colorSecondaryWhite"
+            app:fabSize="normal"
+            android:layout_alignBottom="@id/poilist_listview"
+            android:layout_alignEnd="@id/poilist_listview"
+            android:layout_margin="@dimen/text_subtitle"
+            android:src="@drawable/ic_add_black_24dp"/>
+
+        <view class="android.support.v7.widget.RecyclerView"
+            android:id="@+id/poilist_listview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"/>
 
-            <view class="android.support.v7.widget.RecyclerView"
-                android:id="@+id/poilist_listview"
-                android:layout_width="match_parent"
-                android:layout_height="420dp"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="15dp">
-
-            <Button
-                android:id="@+id/poi_list_navigate_button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/go_to_map_button_text"
-                android:background="@color/colorPrimary"
-                android:textColor="@color/colorSecondaryWhite"
-                android:textSize="26dp"
-                android:drawableTint="@color/colorSecondaryWhite"
-                android:paddingEnd="50dp"
-                android:drawableEnd="@drawable/ic_navigation_black_24dp" />
-        </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </android.support.constraint.ConstraintLayout>

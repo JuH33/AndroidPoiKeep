@@ -90,6 +90,7 @@ public class PoiDetailActivity extends AppCompatActivity {
                     Math.round(100*latLng.getLongitude())/100.f));
             ImageView viewImage = findViewById(R.id.poi_detail_img);
 
+            // LOAD STATIC TILE FROM EXTERNAL API USING LAT LNG COORDINATES
             PicassoWrapper wrapper = new PicassoWrapper();
 
             Display display = getWindowManager().getDefaultDisplay();

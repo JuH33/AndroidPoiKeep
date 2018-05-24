@@ -39,6 +39,8 @@ public class TaskListActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        setTitle("Move list");
+
         mPoiId = getIntent().getExtras().getLong("poi_id");
         mTaskList = new ArrayList<>();
 
@@ -101,7 +103,7 @@ public class TaskListActivity extends AppCompatActivity {
                 task.checked = checked;
                 task.save();
                 Toast.makeText(TaskListActivity.this,
-                        "Item Updated",
+                        "Move Checked!",
                         Toast.LENGTH_LONG).show();
                 Log.i("DATABASE", String.format("TASK N°%s HAS BEEN UPLOADED", task.getId().toString()));
             }

@@ -2,66 +2,89 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/transparent"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_weight="1"
-        android:padding="10dp" >
+        android:background="@android:color/transparent"
+        android:layout_weight="1" >
 
-        <TextView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/overMapBlue"
+            android:padding="@dimen/item_padding"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="70sp"
+                android:src="@drawable/ic_add_circle_black_24dp"
+                android:tint="@color/colorSecondaryWhite" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_subtitle"
+                android:textColor="@color/colorSecondaryWhite"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="@string/create_poi" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/colorWhite"
-            android:gravity="center"
-            android:padding="10dp"
-            android:textSize="@dimen/text_subtitle"
-            android:textStyle="bold"
-            android:layout_marginBottom="10dp"
-            android:text="@string/create_poi"
-            android:background="@color/colorPrimary"/>
+            android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:padding="@dimen/item_padding"
+            android:orientation="vertical">
 
-        <!-- NAME -->
+            <!-- NAME -->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@id/alert_poi_add_name"
-            android:textStyle="bold"
-            android:text="Name:"
-            />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/alert_poi_add_name"
+                android:textStyle="bold"
+                android:text="Name:"
+                />
 
-        <EditText
-            android:id="@+id/alert_poi_add_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
+            <EditText
+                android:id="@+id/alert_poi_add_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
-        <!-- DESCRIPTION -->
+            <!-- DESCRIPTION -->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@id/alert_poi_add_desc"
-            android:textStyle="bold"
-            android:text="Description"
-            />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/alert_poi_add_desc"
+                android:textStyle="bold"
+                android:text="Description"
+                />
 
-        <EditText
-            android:id="@+id/alert_poi_add_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
+            <EditText
+                android:id="@+id/alert_poi_add_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="70dp"
         android:orientation="vertical"
-        android:layout_weight="3" >
+        android:layout_weight="2" >
 
         <include layout="@layout/save_cancel_buttons" />
 

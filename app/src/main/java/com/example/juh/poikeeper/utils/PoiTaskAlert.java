@@ -2,6 +2,7 @@ package com.example.juh.poikeeper.utils;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.net.sip.SipSession;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -52,6 +53,7 @@ public final class PoiTaskAlert extends BasePoiAlert {
         alertBuilder.setView(view);
 
         alertDialog = alertBuilder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         alertDialog.show();
         return null;
     }

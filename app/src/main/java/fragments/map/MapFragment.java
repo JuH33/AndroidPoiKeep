@@ -1,8 +1,6 @@
 package fragments.map;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,7 +14,6 @@ import android.widget.Toast;
 
 import com.activeandroid.Model;
 import com.example.juh.poikeeper.R;
-import com.example.juh.poikeeper.model.PointOfInterest;
 import com.example.juh.poikeeper.utils.BasePoiAlert;
 import com.example.juh.poikeeper.utils.ConnectionWrapper;
 import com.example.juh.poikeeper.utils.PoiAlertCreate;
@@ -103,7 +100,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
             public void onMapReady(final MapboxMap mapboxMap) {
                 mMapboxMap = mapboxMap;
                 CameraPosition.Builder cam = new CameraPosition.Builder();
-                cam.zoom(10);
+                cam.zoom(16);
 
                 if (latLng != null) {
                     cam.target(latLng);

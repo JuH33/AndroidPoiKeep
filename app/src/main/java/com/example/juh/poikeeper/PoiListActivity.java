@@ -1,6 +1,7 @@
 package com.example.juh.poikeeper;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class PoiListActivity extends AppCompatActivity {
 
-    private Button mNavigateButton;
+    private FloatingActionButton mNavigateButton;
     private PoiListAdapter adapter;
 
     @Override

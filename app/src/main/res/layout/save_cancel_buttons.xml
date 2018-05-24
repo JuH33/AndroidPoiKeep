@@ -3,20 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <Button
-        android:id="@+id/ok_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Base.Widget.AppCompat.Button.Colored"
-        android:text="Save" />
-
-    <Button
+        android:layout_weight="1"
         android:id="@+id/cancel_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+        android:layout_height="match_parent"
+        android:background="@color/mapbox_blue"
+        android:textColor="@color/colorSecondaryWhite"
         android:text="Cancel"/>
+
+    <Button
+        android:layout_weight="1"
+        android:id="@+id/ok_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/colorSecondaryWhite"
+        android:background="@color/colorSecondaryOrange"
+        android:text="Save" />
 
 </LinearLayout>

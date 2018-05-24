@@ -2,6 +2,8 @@ package com.example.juh.poikeeper.utils;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -46,6 +48,7 @@ public final class PoiAlertCreate extends BasePoiAlert {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(mContext);
         alertBuilder.setView(view);
         alertDialog = alertBuilder.show();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         return null;
     }
 

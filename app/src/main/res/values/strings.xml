@@ -9,8 +9,8 @@
     <!-- POI ACTIVITY -->
 
     <string name="go_to_map_button_text">Create</string>
-    <string name="create_poi">Add a new Point</string>
-    <string name="create_task">Add a new View</string>
+    <string name="create_poi">Add a new Parkour Spot</string>
+    <string name="create_task">Add a new Move</string>
 
     <!-- DEFAULT -->
     <string name="default_value">Default Value</string>

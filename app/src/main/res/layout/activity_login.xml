@@ -1,63 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".LoginActivity">
 
-    <FrameLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- BACKGROUND IMAGE FROM FRAMELAYOUT CONFIGURATION -->
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:alpha="0.5"
-            android:scaleX="@dimen/twice_scale"
-            android:scaleY="@dimen/twice_scale"
-            android:src="@drawable/mapbox_compass_icon" />
-
         <LinearLayout
+            android:layout_weight="1"
             android:orientation="vertical"
             android:layout_width="match_parent"
+            android:background="@color/colorSecondaryWhite"
             android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="@dimen/base_margin"
-                android:background="@color/colorPrimaryDark"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:text="@string/logo_subtitle"
-                android:textAlignment="center"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/mapbox_blue"
+                android:textStyle="bold"
                 android:textSize="@dimen/text_subtitle"
-                android:textStyle="bold" />
+                android:textAlignment="center"
+                android:layout_marginTop="@dimen/text_subtitle"
+                />
 
-            <RelativeLayout
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="150dp">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="60dp"
+                android:layout_marginTop="60dp"
+                android:src="@drawable/ic_buddy"/>
 
-                <Button
-                    android:id="@+id/login_start_button"
-                    android:drawableTint="@color/colorSecondaryWhite"
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"
-                    android:layout_centerInParent="true"
-                    android:text="@string/start_button_text"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:drawableRight="@drawable/ic_navigation_black_24dp"
-                    android:textColor="@color/colorSecondaryWhite"
-                    android:textStyle="bold"
-                    android:gravity="center"/>
-            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create and keep the best spots"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/mapbox_blue"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="All you need to store parkour spots"
+                android:textAlignment="center"
+                android:textStyle="normal"
+                android:textSize="15sp"
+                android:textColor="@color/colorPrimary"/>
+
 
         </LinearLayout>
 
-    </FrameLayout>
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_weight="6"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/login_start_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/start_button_text"
+            android:background="@android:color/transparent"
+            android:layout_gravity="bottom"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondaryOrange"
+            android:gravity="center" />
+    </LinearLayout>
+
+</LinearLayout>

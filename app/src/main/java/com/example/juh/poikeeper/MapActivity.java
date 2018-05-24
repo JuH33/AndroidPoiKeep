@@ -20,6 +20,8 @@ public class MapActivity extends AppCompatActivity implements MapFragment.OnFrag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        setTitle(R.string.create_poi);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (getIntent().hasExtra("lng") && getIntent().hasExtra("lat")) {
