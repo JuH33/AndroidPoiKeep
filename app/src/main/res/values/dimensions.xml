@@ -6,6 +6,7 @@
     <dimen name="twice_scale">2</dimen>
     <dimen name="text_subtitle">17dp</dimen>
     <dimen name="poi_detail_element_size">20dp</dimen>
+    <dimen name="text_large">40dp</dimen>
 
     <!-- MARGINS -->
 

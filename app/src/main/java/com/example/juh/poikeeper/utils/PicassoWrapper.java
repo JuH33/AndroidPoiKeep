@@ -1,9 +1,11 @@
 package com.example.juh.poikeeper.utils;
 
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.widget.ImageView;
 
 import com.example.juh.poikeeper.R;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
@@ -26,7 +28,7 @@ public final class PicassoWrapper {
     }
 
     public void loadWithOptions(String url, boolean fit, ImageView target,
-                                boolean placeholder) {
+                                boolean placeholder, @Nullable Callback callback) {
         mCreator = load(url);
 
         if (placeholder)
@@ -35,7 +37,7 @@ public final class PicassoWrapper {
         if (fit)
             mCreator.fit().centerCrop();
 
-        mCreator.into(target);
+        mCreator.into(target, callback);
     }
 
     public static String formatUrl(double lat, double lng, int width, int height, String token) {
