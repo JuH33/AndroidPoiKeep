@@ -1,6 +1,10 @@
 package fragments.map;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.activeandroid.Model;
@@ -25,6 +30,8 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+
+import java.util.List;
 
 public class MapFragment extends Fragment implements View.OnClickListener {
 
@@ -78,7 +85,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view;
+        final View view;
         if (ConnectionWrapper.hasConnexion(getContext())) {
             view = inflater.inflate(R.layout.fragment_map, container, false);
         } else {
@@ -103,10 +110,15 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 CameraPosition.Builder cam = new CameraPosition.Builder();
                 cam.zoom(16);
 
+                ImageButton goBtn = view.findViewById(R.id.map_go_btn);
+
                 if (latLng != null) {
                     cam.target(latLng);
                     addMarker(latLng, mapboxMap);
                     mapboxMap.setCameraPosition(cam.build());
+
+                    // Navigation
+                    goBtn.setOnClickListener(goNavigate);
                 } else {
                     cam.target(new LatLng(DEFAULT_LAT, DEFAULT_LNG));
                     mapboxMap.setCameraPosition(cam.build());
@@ -117,6 +129,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                             Toast.LENGTH_LONG).show();
                     mapboxMap.addOnMapClickListener(mapClickListener);
                     mapboxMap.setOnMarkerClickListener(markerClickListener);
+                    goBtn.setVisibility(View.GONE);
                 }
             }
         });
@@ -279,6 +292,30 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                         }
                     }).create();
             return false;
+        }
+    };
+
+    View.OnClickListener goNavigate = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            // Geo will get the camera to the current loc, ?q= (query) will ask for navigation
+            Uri location = Uri.parse("geo:" + latLng.getLatitude() + "," +
+                    latLng.getLongitude() + "('mission')" + "?q=" + latLng.getLatitude() + ","
+                    + latLng.getLongitude());
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+
+            PackageManager packageManager = getActivity().getPackageManager();
+            List<ResolveInfo> activities = packageManager.queryIntentActivities(mapIntent, 0);
+
+            boolean isIntentSafe = (activities.size() > 0);
+
+            for (ResolveInfo ri : activities) {
+                System.out.print(ri.activityInfo.name);
+                System.out.print(ri.activityInfo.describeContents());
+            }
+            if (isIntentSafe) {
+                startActivity(mapIntent);
+            }
         }
     };
 

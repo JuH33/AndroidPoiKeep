@@ -9,6 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageButton
+            android:id="@+id/map_go_btn"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@color/colorSecondaryOrange"
+            android:tint="@color/colorWhite"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="170dp"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/ic_navigation_black_24dp"/>
+
         <Button
             android:id="@+id/map_zoom_out"
             android:layout_width="45dp"
