@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class LoginActivity extends AppCompatActivity {
 
     private Button mButton;
+    private ImageButton imgBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +21,12 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mButton = findViewById(R.id.login_start_button);
+        imgBtn = findViewById(R.id.logo_login);
 
         // INITIALIZE LISTENERS
         mButton.setOnClickListener(buttonListener);
+        imgBtn.setOnClickListener(buttonListener);
+
         getSupportActionBar().hide();
     }
 

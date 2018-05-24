@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:labelFor="@id/alert_poi_add_name"
                 android:textStyle="bold"
-                android:text="Title:"
+                android:text="Trick Name:"
                 />
 
             <EditText
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:labelFor="@id/alert_poi_add_name"
                 android:textStyle="bold"
-                android:text="Name:"
+                android:text="Element to use (wall, rod...):"
                 />
 
             <EditText
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:labelFor="@id/alert_poi_add_desc"
                 android:textStyle="bold"
-                android:text="Description"
+                android:text="Description:"
                 />
 
             <EditText
