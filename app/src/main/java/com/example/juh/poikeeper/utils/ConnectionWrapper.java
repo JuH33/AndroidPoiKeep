@@ -12,7 +12,7 @@ public final class ConnectionWrapper {
         NetworkInfo n = c.getActiveNetworkInfo();
 
         return (n != null && n.isConnected() &&
-                n.getType() == ConnectivityManager.TYPE_WIFI ||
-                n.getType() == ConnectivityManager.TYPE_MOBILE);
+                (n.getType() == ConnectivityManager.TYPE_WIFI ||
+                n.getType() == ConnectivityManager.TYPE_MOBILE));
     }
 }

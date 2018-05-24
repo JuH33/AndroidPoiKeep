@@ -82,7 +82,8 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         if (ConnectionWrapper.hasConnexion(getContext())) {
             view = inflater.inflate(R.layout.fragment_map, container, false);
         } else {
-            view = inflater.inflate(R.layout.fragment_map, container, false);
+            view = inflater.inflate(R.layout.no_map_fragment, container, false);
+            return view;
         }
 
         /// SET ONCLICK LISTENERS
@@ -126,31 +127,36 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        mapView.onStart();
+        if (mapView != null)
+            mapView.onStart();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mapView.onResume();
+        if (mapView != null)
+            mapView.onResume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mapView.onPause();
+        if (mapView != null)
+            mapView.onPause();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mapView.onStop();
+        if (mapView != null)
+            mapView.onStop();
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        mapView.onLowMemory();
+        if (mapView != null)
+            mapView.onLowMemory();
     }
 
     @Override
@@ -160,13 +166,16 @@ public class MapFragment extends Fragment implements View.OnClickListener {
             outState.putDouble(ARG_LNG, latLng.getLongitude());
         }
         super.onSaveInstanceState(outState);
-        mapView.onSaveInstanceState(outState);
+
+        if (mapView != null)
+            mapView.onSaveInstanceState(outState);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mapView.onDestroy();
+        if (mapView != null)
+            mapView.onDestroy();
     }
 
     @Override
@@ -183,7 +192,8 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        if (mapView != null)
+            mListener = null;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
